@@ -1,6 +1,6 @@
-import babel from "rollup-plugin-babel";
+import typescript from 'rollup-plugin-typescript2';
+const pkg = require('./package.json');
 
-const pkg = require("./package.json");
 const banner = `/*!
  * ${pkg.name}
  * ${pkg.description}
@@ -12,13 +12,13 @@ const banner = `/*!
 
 export default {
   banner,
-  entry: "src/sweet-scroll.js",
-  dest: "sweet-scroll.js",
-  moduleName: "SweetScroll",
-  format: "umd",
+  entry: 'foo/index.ts',
+  dest: 'sweet-scroll.js',
+  moduleName: 'SweetScroll',
+  format: 'umd',
   plugins: [
-    babel({
-      exclude: "node_modules/**"
-    })
-  ]
+    typescript({
+      useTsconfigDeclarationDir: true,
+    }),
+  ],
 };

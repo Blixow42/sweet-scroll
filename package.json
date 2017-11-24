@@ -5,7 +5,10 @@
   "main": "sweet-scroll.js",
   "scripts": {
     "start": "echo \"todo: start\"",
-    "build": "echo \"todo: build\"",
+    "build": "npm run build:bundle && npm run build:decls",
+    "build:bundle": "rollup -c",
+    "build:decls": "dts-bundle --baseDir ./ --name sweet-scroll --main .decls/index.d.ts",
+    "clean": "rimraf .decls .rpt2_cache",
     "test": "npm run test:lint && npm run test:unit",
     "test:unit": "jest",
     "test:lint": "eslint \"src/**/*.js\"",
@@ -44,6 +47,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-1": "^6.24.1",
     "browser-sync": "^2.18.8",
+    "dts-bundle": "^0.7.3",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -51,9 +55,12 @@
     "jest": "^21.2.1",
     "node-sass": "^4.5.2",
     "postcss-cli": "^4.0.0",
+    "rimraf": "^2.6.2",
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-typescript2": "^0.8.2",
     "sass-loader": "^6.0.6",
+    "typescript": "^2.6.1",
     "webpack": "^3.8.1"
   }
 }

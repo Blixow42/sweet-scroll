@@ -1,16 +1,10 @@
 {
-  "env": {
-    "production": {
-      "presets": [
-        ["es2015", { "modules": false }],
-        "stage-0"
-      ],
-      "plugins": [
-        "external-helpers"
-      ],
-    },
-    "test": {
-      "presets": ["es2015", "stage-0"]
-    }
-  }
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 4 versions", "ie 10"]
+      }
+    }],
+    "stage-1"
+  ]
 }

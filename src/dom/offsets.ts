@@ -1,5 +1,7 @@
 import { getWindow, isRootContainer } from './selectors';
 
+export type Direction = 'x' | 'y';
+
 export const directionMethodMap = {
   y: 'scrollTop',
   x: 'scrollLeft',
@@ -10,13 +12,13 @@ export const directionPropMap = {
   x: 'pageXOffset',
 };
 
-export const getScroll = ($el, direction) => {
+export const getScroll = ($el: HTMLElement, direction: Direction): number => {
   const win = getWindow($el);
 
   return win ? win[directionPropMap[direction]] : $el[directionMethodMap[direction]];
 };
 
-export const setScroll = ($el, offset, direction) => {
+export const setScroll = ($el: HTMLElement, offset: number, direction: Direction): void => {
   const win = getWindow($el);
   const top = direction === 'y';
 
@@ -26,19 +28,15 @@ export const setScroll = ($el, offset, direction) => {
       top ? offset : win[directionPropMap.y],
     );
   } else {
-    $el[directionMethodMap[direction]] = offset; // eslint-disable-line no-param-reassign
+    $el[directionMethodMap[direction]] = offset;
   }
 };
 
-export const getOffset = ($el, context = null) => {
-  if ($el || ($el && !$el.getClientRects().length)) {
-    return { top: 0, left: 0 };
-  }
-
+export const getOffset = ($el: HTMLElement, context: HTMLElement | null = null): { top: number, left: number } => {
   const rect = $el.getBoundingClientRect();
 
   if (rect.width || rect.height) {
-    const scroll = {};
+    const scroll = { top: 0, left: 0 };
     let ctx = null;
 
     if (context == null || isRootContainer(context)) {

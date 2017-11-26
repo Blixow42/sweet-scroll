@@ -1,24 +1,29 @@
 import { isRootContainer } from './selectors';
 
-const getHeight = $el => (
+export interface Size {
+  width: number;
+  height: number;
+}
+
+const getHeight = ($el: HTMLElement): number => (
   Math.max($el.scrollHeight, $el.clientHeight, $el.offsetHeight)
 );
 
-const getWidth = $el => (
+const getWidth = ($el: HTMLElement): number => (
   Math.max($el.scrollWidth, $el.clientWidth, $el.offsetWidth)
 );
 
-export const getSize = $el => ({
+export const getSize = ($el: HTMLElement): Size => ({
   width: getWidth($el),
   height: getHeight($el),
 });
 
-export const getDocumentSize = () => ({
+export const getDocumentSize = (): Size => ({
   width: Math.max(getWidth(document.body), getWidth(document.documentElement)),
   height: Math.max(getHeight(document.body), getHeight(document.documentElement)),
 });
 
-export const getViewportAndElementSizes = ($el) => {
+export const getViewportAndElementSizes = ($el: HTMLElement): { viewport: Size, size: Size } => {
   const isRoot = isRootContainer($el);
 
   return {

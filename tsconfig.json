@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "rootDirs": [
-      "./foo"
+      "./src"
     ],
     "lib": [
       "dom",
@@ -34,7 +34,7 @@
     "listEmittedFiles": false
   },
   "include": [
-    "./foo/**/*.ts"
+    "./src/**/*.ts"
   ],
   "exclude": [
     "./node_modules"

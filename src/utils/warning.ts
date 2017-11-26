@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable no-empty */
-const warning = (message) => {
+/* tslint:disable:no-console */
+/* tslint:disable:no-empty */
+export const warning = (message: string): void => {
   if (typeof console !== 'undefined' && typeof console.error === 'function') {
     console.error(message);
   }
@@ -9,5 +9,3 @@ const warning = (message) => {
     throw new Error(message);
   } catch (e) {}
 };
-
-export default warning;

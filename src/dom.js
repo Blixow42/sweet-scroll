@@ -30,7 +30,7 @@ function getScrollable(selectors, direction = "y", all = true) {
 
   for (let i = 0; i < elements.length; i++) {
     const el = elements[i];
-
+    el[method] = 1;
     if (el[method] > 0) {
       scrollables.push(el);
     } else {
@@ -46,6 +46,7 @@ function getScrollable(selectors, direction = "y", all = true) {
 
       el.removeChild($div);
     }
+    el[method] = 0;
 
     if (!all && scrollables.length > 0) break;
   }

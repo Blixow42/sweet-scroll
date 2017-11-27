@@ -243,7 +243,7 @@ function getScrollable(selectors) {
 
   for (var i = 0; i < elements.length; i++) {
     var el = elements[i];
-
+    el[method] = 1;
     if (el[method] > 0) {
       scrollables.push(el);
     } else {
@@ -259,6 +259,7 @@ function getScrollable(selectors) {
 
       el.removeChild($div);
     }
+    el[method] = 0;
 
     if (!all && scrollables.length > 0) break;
   }
